@@ -1,0 +1,466 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101010">
+<title>GOLDEN BURGER | Premium Experience</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500;600;700;800&display=swap');
+
+:root{
+--bg:#101010;
+--surface:#191919;
+--red:#e52c24;
+--gold:#e9b65a;
+--white:#fff;
+--muted:#999;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:white;font-family:'DM Sans',Arial,sans-serif}
+button{font-family:inherit;cursor:pointer;border:0}
+a{text-decoration:none;color:inherit}
+.topbar{
+background:var(--red);text-align:center;padding:9px;
+font-size:11px;font-weight:800;letter-spacing:2px
+}
+header{
+height:78px;padding:0 6%;display:flex;
+align-items:center;justify-content:space-between;
+background:#101010ed;position:sticky;top:0;z-index:10;
+border-bottom:1px solid #ffffff12;backdrop-filter:blur(15px)
+}
+.logo{font-family:Anton,sans-serif;font-size:27px;letter-spacing:2px}
+.logo span{color:var(--gold)}
+.nav{display:flex;gap:30px}
+.nav a{font-size:13px;color:#ccc;transition:.2s}
+.nav a:hover{color:var(--gold)}
+.header-actions{display:flex;gap:12px;align-items:center}
+.cart-btn{background:var(--red);color:white;padding:13px 18px;border-radius:5px;font-weight:800}
+.hero{
+min-height:650px;display:flex;align-items:center;
+position:relative;overflow:hidden;padding:70px 8%;
+background:
+linear-gradient(90deg,#101010 0%,#101010eb 35%,#10101055 100%),
+url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1800') center/cover;
+}
+.hero:after{
+content:"";position:absolute;right:-100px;bottom:-170px;
+width:450px;height:450px;border:1px solid #e9b65a35;border-radius:50%;
+box-shadow:0 0 0 60px #e9b65a08,0 0 0 120px #e9b65a05
+}
+.hero-content{position:relative;z-index:1;max-width:650px}
+.eyebrow{color:var(--gold);font-size:12px;font-weight:800;letter-spacing:5px}
+.hero h1{
+font-family:Anton,sans-serif;font-size:clamp(60px,9vw,112px);
+line-height:.95;letter-spacing:1px;margin:25px 0
+}
+.hero h1 span{color:var(--red)}
+.hero p{max-width:440px;color:#bbb;line-height:1.9;font-size:15px}
+.hero-buttons{display:flex;gap:15px;flex-wrap:wrap;margin-top:32px}
+.btn-primary{
+background:var(--red);padding:17px 27px;color:white;
+font-weight:800;letter-spacing:1px;border-radius:4px;transition:.3s
+}
+.btn-primary:hover{background:#ff4138;transform:translateY(-3px)}
+.btn-outline{padding:16px 25px;border:1px solid #ffffff55;border-radius:4px;font-weight:700}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+.hero-bottom{display:flex;gap:35px;margin-top:48px;flex-wrap:wrap}
+.hero-bottom strong{display:block;font-size:22px;color:var(--gold)}
+.hero-bottom small{color:#aaa;font-size:11px}
+section{padding:85px 7%}
+.section-head{margin-bottom:38px}
+.section-head .eyebrow{font-size:11px}
+.section-head h2{font-family:Anton,sans-serif;font-size:44px;font-weight:400;margin-top:12px}
+.section-head p{color:var(--muted);font-size:13px;margin-top:8px}
+.categories{display:flex;gap:10px;overflow-x:auto;padding:5px 0 25px}
+.cat{
+white-space:nowrap;padding:13px 23px;background:#1c1c1c;
+color:#ccc;border:1px solid #ffffff12;border-radius:4px;
+font-size:12px;font-weight:800;transition:.25s
+}
+.cat.active,.cat:hover{background:var(--red);color:white;border-color:var(--red)}
+.products{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.product{
+background:#191919;border:1px solid #ffffff0c;
+border-radius:8px;overflow:hidden;transition:.35s;position:relative
+}
+.product:hover{transform:translateY(-8px);border-color:#e9b65a60}
+.product-img{height:235px;overflow:hidden;position:relative}
+.product-img img{height:100%;width:100%;object-fit:cover;transition:.5s}
+.product:hover img{transform:scale(1.09)}
+.product-label{
+position:absolute;top:14px;left:14px;background:var(--red);
+padding:7px 10px;font-size:9px;font-weight:900;letter-spacing:1px
+}
+.product-info{padding:21px}
+.product-info h3{font-size:19px;font-weight:800}
+.product-info p{font-size:12px;color:#999;line-height:1.7;margin-top:9px;min-height:42px}
+.product-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:19px}
+.price{font-size:21px;font-weight:800;color:var(--gold)}
+.add{
+background:var(--red);color:white;width:43px;height:43px;
+border-radius:5px;font-size:24px;transition:.2s
+}
+.add:hover{background:var(--gold);color:#111}
+.feature{
+background:linear-gradient(100deg,#a71e19,#e52c24);
+padding:55px 7%;display:flex;justify-content:space-between;
+align-items:center;gap:25px;flex-wrap:wrap
+}
+.feature h2{font-family:Anton,sans-serif;font-size:43px;font-weight:400}
+.feature p{font-size:13px;color:#ffe0dc;margin-top:10px}
+.feature button{background:#111;color:white;padding:16px 25px;font-weight:800}
+.story{display:grid;grid-template-columns:1fr 1fr;gap:55px;align-items:center}
+.story img{width:100%;height:390px;object-fit:cover;border-radius:7px}
+.story h2{font-family:Anton,sans-serif;font-size:48px;font-weight:400;margin:15px 0}
+.story p{color:#aaa;line-height:1.9;font-size:14px}
+.benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:45px}
+.benefit{padding:28px 15px;background:#191919;text-align:center;border:1px solid #ffffff0b}
+.benefit strong{color:var(--gold);font-size:27px;display:block;margin-bottom:10px}
+.benefit p{font-size:12px;color:#aaa}
+.dev{
+background:#181512;text-align:center;padding:75px 20px;
+border-top:1px solid #e9b65a25;border-bottom:1px solid #e9b65a25
+}
+.dev h2{font-family:Anton,sans-serif;font-size:42px;font-weight:400;margin:15px 0}
+.dev p{color:#aaa;font-size:14px;line-height:1.8}
+.dev strong{color:var(--gold)}
+.dev-btn{
+display:inline-block;margin-top:25px;background:#25d366;color:white;
+padding:17px 28px;border-radius:5px;font-weight:800
+}
+footer{background:#080808;padding:38px 7%;text-align:center;color:#777;line-height:2;font-size:12px}
+footer .logo{color:white}
+footer span{color:var(--gold)}
+.floating{
+position:fixed;bottom:20px;right:18px;z-index:15;
+background:#25d366;color:white;padding:15px 19px;border-radius:50px;
+font-size:13px;font-weight:800;box-shadow:0 5px 30px #0009
+}
+.overlay{position:fixed;inset:0;background:#000b;z-index:30;display:none;justify-content:flex-end}
+.overlay.show{display:flex}
+.drawer{
+width:min(430px,100%);height:100%;background:#181818;
+padding:25px;display:flex;flex-direction:column;overflow:auto;
+animation:slide .25s ease
+}
+@keyframes slide{from{transform:translateX(100%)}to{transform:translateX(0)}}
+.drawer-head{display:flex;justify-content:space-between;margin-bottom:25px}
+.close{background:none;color:white;font-size:30px}
+.cart-items{flex:1}
+.cart-item{display:flex;justify-content:space-between;gap:10px;padding:15px 0;border-bottom:1px solid #ffffff18}
+.cart-item small{color:#999}
+.qty{display:flex;align-items:center;gap:9px}
+.qty button{background:#333;color:white;padding:7px 11px;border-radius:4px}
+.total{display:flex;justify-content:space-between;padding:20px 0;font-size:21px;font-weight:800}
+.checkout{width:100%;background:var(--red);color:white;padding:17px;font-weight:900;border-radius:4px}
+.empty{text-align:center;color:#999;margin-top:65px}
+.modal{position:fixed;inset:0;background:#000d;z-index:40;display:none;align-items:center;justify-content:center;padding:20px}
+.modal.show{display:flex}
+.modal-box{background:#1b1b1b;border:1px solid #ffffff20;border-radius:8px;padding:25px;width:min(430px,100%)}
+.modal-box h2{margin-bottom:20px}
+.modal-box label{font-size:12px;color:#ccc}
+.modal-box input,.modal-box textarea{
+width:100%;padding:14px;margin:8px 0 17px;background:#101010;
+border:1px solid #444;border-radius:4px;color:white;font:inherit
+}
+.modal-box textarea{min-height:75px}
+@media(max-width:800px){
+.nav{display:none}
+.hero{min-height:580px;padding:55px 6%;background-position:62%}
+.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.product-img{height:150px}
+.product-info{padding:13px}
+.product-info h3{font-size:15px}
+.product-info p{font-size:11px;min-height:55px}
+.price{font-size:16px}
+.add{width:35px;height:35px}
+.story{grid-template-columns:1fr;gap:25px}
+.story img{height:260px}
+.benefits{grid-template-columns:1fr}
+section{padding:60px 5%}
+.section-head h2{font-size:36px}
+.feature h2{font-size:34px}
+.floating{font-size:11px;right:10px;bottom:12px}
+}
+@media(min-width:801px) and (max-width:1100px){
+.products{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">🔥 HOJE É DIA DE BURGER — PEÇA O SEU!</div>
+
+<header>
+ <div class="logo">GOLDEN<span>.</span></div>
+ <nav class="nav">
+  <a href="#inicio">INÍCIO</a>
+  <a href="#cardapio">CARDÁPIO</a>
+  <a href="#historia">NOSSA HISTÓRIA</a>
+  <a href="#contato">CONTATO</a>
+ </nav>
+ <div class="header-actions">
+  <button class="cart-btn" onclick="openCart()">🛒 <span id="count">0</span></button>
+ </div>
+</header>
+
+<main>
+<div class="hero" id="inicio">
+ <div class="hero-content">
+  <div class="eyebrow">✦ BURGER EXPERIENCE</div>
+  <h1>O SABOR<br>QUE <span>DOMINA.</span></h1>
+  <p>Não fazemos apenas hambúrgueres. Criamos experiências com ingredientes selecionados, carne suculenta e combinações que você não encontra em qualquer lugar.</p>
+  <div class="hero-buttons">
+   <button class="btn-primary" onclick="document.getElementById('cardapio').scrollIntoView()">PEDIR AGORA →</button>
+   <a class="btn-outline" href="#historia">CONHEÇA A CASA</a>
+  </div>
+  <div class="hero-bottom">
+   <div><strong>100%</strong><small>CARNE ARTESANAL</small></div>
+   <div><strong>★ 4.9</strong><small>QUALIDADE</small></div>
+   <div><strong>PREMIUM</strong><small>INGREDIENTES</small></div>
+  </div>
+ </div>
+</div>
+
+<section id="cardapio">
+ <div class="section-head">
+  <div class="eyebrow">NOSSA SELEÇÃO</div>
+  <h2>ESCOLHA SEU FAVORITO.</h2>
+  <p>Preparado na hora. Feito para impressionar.</p>
+ </div>
+ <div class="categories">
+  <button class="cat active" onclick="filter('Todos',this)">TODOS</button>
+  <button class="cat" onclick="filter('Burgers',this)">🍔 BURGERS</button>
+  <button class="cat" onclick="filter('Combos',this)">🍟 COMBOS</button>
+  <button class="cat" onclick="filter('Bebidas',this)">🥤 BEBIDAS</button>
+ </div>
+ <div class="products" id="products"></div>
+</section>
+
+<div class="feature">
+ <div>
+  <div class="eyebrow" style="color:#ffd48a">OFERTA DA CASA</div>
+  <h2>O COMBO PERFEITO EXISTE.</h2>
+  <p>Hambúrguer + batata + bebida. Uma combinação irresistível.</p>
+ </div>
+ <button onclick="filter('Combos',document.querySelectorAll('.cat')[2]);document.getElementById('cardapio').scrollIntoView()">VER COMBOS →</button>
+</div>
+
+<section id="historia">
+ <div class="story">
+  <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=900" alt="Hambúrguer artesanal">
+  <div>
+   <div class="eyebrow">MAIS QUE UMA HAMBURGUERIA</div>
+   <h2>PAIXÃO EM CADA DETALHE.</h2>
+   <p>Acreditamos que um bom hambúrguer começa com ingredientes de qualidade. Cada combinação é pensada para entregar sabor, textura e uma experiência inesquecível.</p>
+   <br>
+   <p>Do primeiro ingrediente até a última mordida, tudo é preparado com carinho.</p>
+  </div>
+ </div>
+ <div class="benefits">
+  <div class="benefit"><strong>01</strong><p>INGREDIENTES SELECIONADOS</p></div>
+  <div class="benefit"><strong>02</strong><p>PREPARO NA HORA</p></div>
+  <div class="benefit"><strong>03</strong><p>SABOR INCONFUNDÍVEL</p></div>
+ </div>
+</section>
+
+<section class="dev" id="contato">
+ <div class="eyebrow">SEU NEGÓCIO MERECE UM PROJETO ASSIM</div>
+ <h2>GOSTOU DESTA DEMONSTRAÇÃO?</h2>
+ <p>Este projeto foi desenvolvido por <strong>Fernando</strong>.<br>
+ Também crio sites e aplicativos personalizados para empresas, lojas e negócios.</p>
+ <a href="#" class="dev-btn" id="devContact">💬 CONVERSAR COM FERNANDO</a>
+</section>
+</main>
+
+<footer>
+ <div class="logo">GOLDEN<span>.</span></div>
+ <p>UMA EXPERIÊNCIA EM CADA MORDIDA.</p>
+ <p>© 2026 GOLDEN BURGER — PROJETO DEMONSTRATIVO</p>
+ <p>Desenvolvido por Fernando.</p>
+</footer>
+
+<a href="#" id="floatingContact" class="floating">💬 FALAR COM FERNANDO</a>
+
+<div class="overlay" id="overlay" onclick="if(event.target===this)closeCart()">
+ <div class="drawer">
+  <div class="drawer-head">
+   <h2>SEU PEDIDO 🛒</h2>
+   <button class="close" onclick="closeCart()">×</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div>
+   <div class="total"><span>TOTAL</span><span id="total">R$ 0,00</span></div>
+   <button class="checkout" onclick="checkout()">CONTINUAR PEDIDO →</button>
+  </div>
+ </div>
+</div>
+
+<div class="modal" id="modal">
+ <div class="modal-box">
+  <div style="display:flex;justify-content:space-between">
+   <h2>FINALIZAR PEDIDO</h2>
+   <button class="close" onclick="closeModal()">×</button>
+  </div>
+  <label>SEU NOME</label>
+  <input id="name" placeholder="Digite seu nome">
+  <label>ENDEREÇO</label>
+  <input id="address" placeholder="Rua, número e bairro">
+  <label>OBSERVAÇÕES</label>
+  <textarea id="obs" placeholder="Alguma observação?"></textarea>
+  <button class="checkout" onclick="finishOrder()">ENVIAR PEDIDO PELO WHATSAPP</button>
+ </div>
+</div>
+
+<script>
+// ==================================
+// PERSONALIZE OS CONTATOS
+// ==================================
+
+// WhatsApp da hamburgueria:
+const STORE_WHATSAPP = "";
+
+// WhatsApp do desenvolvedor Fernando:
+// Formato: 55 + DDD + número, somente números.
+const DEV_WHATSAPP = "55SEUDDDSEUNUMERO";
+
+// ==================================
+
+function contact(number,message){
+ if(!number || number.includes("SEU")){
+  alert("O número de WhatsApp ainda não foi configurado.");
+  return;
+ }
+ window.open("https://wa.me/"+number+"?text="+encodeURIComponent(message),"_blank");
+}
+
+function devMessage(e){
+ e.preventDefault();
+ contact(DEV_WHATSAPP,"Olá, Fernando! Conheci sua demonstração GOLDEN BURGER e gostaria de conversar sobre a criação de um site ou aplicativo para meu negócio.");
+}
+document.getElementById("devContact").onclick=devMessage;
+document.getElementById("floatingContact").onclick=devMessage;
+
+const products=[
+{id:1,name:"Golden Classic",cat:"Burgers",price:26.90,desc:"Pão brioche, blend artesanal, cheddar e molho especial.",img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=700",tag:"MAIS PEDIDO"},
+{id:2,name:"Double Gold",cat:"Burgers",price:34.90,desc:"Duas carnes, cheddar duplo e bacon crocante.",img:"https://images.unsplash.com/photo-1553979459-d2229ba7433a?w=700",tag:"ESPECIAL"},
+{id:3,name:"Smash Supreme",cat:"Burgers",price:29.90,desc:"Smash burger, queijo, cebola e molho da casa.",img:"https://images.unsplash.com/photo-1550547660-d9450f859349?w=700",tag:"DESTAQUE"},
+{id:4,name:"Chicken Crispy",cat:"Burgers",price:27.90,desc:"Frango crocante, queijo e molho cremoso.",img:"https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=700",tag:"CROCANTE"},
+{id:5,name:"Combo Golden",cat:"Combos",price:42.90,desc:"Golden Classic, batata frita e refrigerante.",img:"https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=700",tag:"OFERTA"},
+{id:6,name:"Combo Duplo",cat:"Combos",price:64.90,desc:"Dois burgers, duas batatas e duas bebidas.",img:"https://images.unsplash.com/photo-1553979459-d2229ba7433a?w=700",tag:"PARA DOIS"},
+{id:7,name:"Batata Supreme",cat:"Combos",price:19.90,desc:"Batata crocante com cheddar e bacon.",img:"https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=700",tag:"ESPECIAL"},
+{id:8,name:"Refrigerante",cat:"Bebidas",price:7.00,desc:"Lata 350 ml bem gelada.",img:"https://images.unsplash.com/photo-1581636625402-29b2a704ef13?w=700",tag:"GELADO"},
+{id:9,name:"Milk-shake",cat:"Bebidas",price:17.90,desc:"Milk-shake cremoso preparado na hora.",img:"https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=700",tag:"CREMOSO"}
+];
+
+let cart={};
+const money=v=>v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+
+function renderProducts(category="Todos"){
+ const list=products.filter(p=>category==="Todos"||p.cat===category);
+ document.getElementById("products").innerHTML=list.map(p=>`
+ <article class="product">
+  <div class="product-img">
+   <img src="${p.img}" alt="${p.name}" loading="lazy">
+   <div class="product-label">${p.tag}</div>
+  </div>
+  <div class="product-info">
+   <h3>${p.name}</h3>
+   <p>${p.desc}</p>
+   <div class="product-bottom">
+    <span class="price">${money(p.price)}</span>
+    <button class="add" onclick="add(${p.id})">+</button>
+   </div>
+  </div>
+ </article>`).join("");
+}
+
+function filter(category,btn){
+ document.querySelectorAll(".cat").forEach(b=>b.classList.remove("active"));
+ btn.classList.add("active");
+ renderProducts(category);
+}
+
+function add(id){
+ cart[id]=(cart[id]||0)+1;
+ updateCart();
+}
+
+function change(id,n){
+ cart[id]=(cart[id]||0)+n;
+ if(cart[id]<=0)delete cart[id];
+ updateCart();
+}
+
+function updateCart(){
+ let count=Object.values(cart).reduce((a,b)=>a+b,0);
+ let total=0;
+ document.getElementById("count").textContent=count;
+ let html="";
+ products.forEach(p=>{
+  if(cart[p.id]){
+   total+=p.price*cart[p.id];
+   html+=`<div class="cart-item">
+   <div><strong>${p.name}</strong><br><small>${money(p.price)} cada</small></div>
+   <div class="qty">
+   <button onclick="change(${p.id},-1)">−</button>
+   <b>${cart[p.id]}</b>
+   <button onclick="change(${p.id},1)">+</button>
+   </div></div>`;
+  }
+ });
+ document.getElementById("cartItems").innerHTML=html||'<div class="empty">🍔<br><br>Seu carrinho está vazio.<br>Escolha seu favorito!</div>';
+ document.getElementById("total").textContent=money(total);
+}
+
+function openCart(){document.getElementById("overlay").classList.add("show")}
+function closeCart(){document.getElementById("overlay").classList.remove("show")}
+
+function checkout(){
+ if(!Object.keys(cart).length)return alert("Adicione algum produto primeiro!");
+ closeCart();
+ document.getElementById("modal").classList.add("show");
+}
+function closeModal(){document.getElementById("modal").classList.remove("show")}
+
+function finishOrder(){
+ const name=document.getElementById("name").value.trim();
+ const address=document.getElementById("address").value.trim();
+ if(!name||!address)return alert("Preencha seu nome e endereço.");
+
+ let message="Olá! Quero fazer meu pedido:\n\n";
+ let total=0;
+ products.forEach(p=>{
+  if(cart[p.id]){
+   message+=cart[p.id]+"x "+p.name+" - "+money(p.price*cart[p.id])+"\n";
+   total+=p.price*cart[p.id];
+  }
+ });
+ message+="\nTotal: "+money(total);
+ message+="\nNome: "+name+"\nEndereço: "+address;
+ const obs=document.getElementById("obs").value.trim();
+ if(obs)message+="\nObservações: "+obs;
+
+ if(!STORE_WHATSAPP){
+  alert("Configure o WhatsApp da hamburgueria no início do código para receber pedidos.");
+  return;
+ }
+
+ contact(STORE_WHATSAPP,message);
+ cart={};
+ updateCart();
+ closeModal();
+ document.getElementById("name").value="";
+ document.getElementById("address").value="";
+ document.getElementById("obs").value="";
+}
+
+renderProducts();
+updateCart();
+</script>
+</body>
+</html>
